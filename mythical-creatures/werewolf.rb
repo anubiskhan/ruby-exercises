@@ -3,29 +3,44 @@ class Werewolf
   def initialize(name, location = 'earth')
     @name = name
     @location = location
-    @human_form = true
+    @form = :human
     @hungry = false
+    @recent_transformation = false
   end
 
   def change!
-    if @human_form == true
-      @human_form = false
+    if @form == :human
+      @recent_transformation = true
+      @form = :wolf
     else
-      @human_form = true
+      @form = :human
     end
   end
 
   def human?
-    @human_form
+    @form == :human
   end
 
   def wolf?
-    true if @human_form != true
+    @form == :wolf
   end
 
   def hungry?
-    @hungry
-    !@hungry if !@human_form
+    if @recent_transformation == false
+      @hungry
+    else
+      !@hungry
+    end
+  end
+
+  def consume(tasty)
+    if @form == :wolf
+      tasty.status = :dead
+      @recent_transformation = false
+      'Ate that lil b'
+    else
+      false
+    end
   end
 
 end
