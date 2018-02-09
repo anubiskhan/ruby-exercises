@@ -1,5 +1,5 @@
 class Centaur
-  attr_reader :name, :breed, :cranky_counter
+  attr_reader :name, :breed
   def initialize(name, breed)
     @name = name
     @breed = breed
@@ -61,6 +61,16 @@ class Centaur
     if @laying == true
       @laying = false
       @standing = true
+    end
+  end
+
+  def drink_potion
+    if @standing == true && @cranky_counter > 0
+      @cranky_counter = 0
+    elsif @standing == false
+      'Impossible'
+    else
+      'got sick'
     end
   end
 end
