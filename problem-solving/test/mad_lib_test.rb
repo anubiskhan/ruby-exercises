@@ -4,7 +4,7 @@ require "./lib/mad_lib"
 class MadLibTest < Minitest::Test
 
   def test_it_can_create_a_mad_lib
-    madlib = madlib.new
+    madlib = MadLib.new
 
     madlib.noun("dog")
     madlib.verb("walk")
@@ -17,7 +17,7 @@ class MadLibTest < Minitest::Test
   end
 
   def test_it_can_create_a_different_mad_lib
-    madlib = madlib.new
+    madlib = MadLib.new
 
     madlib.noun("capybara")
     madlib.verb("pet")
@@ -26,6 +26,6 @@ class MadLibTest < Minitest::Test
     result = madlib.result
     expected = "Do you walk your blue dog quickly? That's hilarious!"
 
-    assert_equal expected, result
+    refute expected == result
   end
 end
